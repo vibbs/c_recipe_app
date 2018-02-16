@@ -11,7 +11,7 @@ class RecipeItem extends Component {
 	}
   render() {
     return (
-      <li className="collection-item">
+      <li className="collection-item" >
       <Link to={`/recipes/${this.state.item.id}`}>
       {this.state.item.name}
       </Link>

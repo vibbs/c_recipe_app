@@ -23,7 +23,7 @@ class Recipes extends Component{
 	render(){
 		const recipeItems = this.state.recipes.map((recipe, i) => {
 			return (
-				<RecipeItem item={recipe}/>
+				<RecipeItem item={recipe} key= {recipe.id}/>
 			)
 		})
 		return (

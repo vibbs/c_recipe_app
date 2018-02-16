@@ -41,14 +41,6 @@
       "through": "ingredient_entry"
     }
   },
-  "acls": [
-    {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "$unauthenticated",
-      "permission": "DENY",
-      "property": ""
-    }
-  ],
+  "acls": [],
   "methods": {}
 }
