@@ -1,0 +1,54 @@
+{
+  "name": "recipe",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "string",
+      "required": true
+    },
+    "flavour_tags": {
+      "type": [
+        "string"
+      ]
+    },
+    "public_view": {
+      "type": "boolean"
+    },
+    "generic_creation": {
+      "type": "boolean"
+    },
+    "ingredient_list": {
+      "type": [
+        "ingredient_entry"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ingredient_list": {
+      "type": "hasMany",
+      "model": "ingredient_entry",
+      "foreignKey": "",
+      "through": "ingredient_entry"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY",
+      "property": ""
+    }
+  ],
+  "methods": {}
+}
