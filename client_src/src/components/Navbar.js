@@ -18,9 +18,12 @@ class Navbar extends Component{
 
            </ul>
            <ul className="side-nav" id="main-menu">
-					 		<li><Link to="/" className="fa fa-users">Recipies</Link></li>
+					 		<li><Link to="/" className="fa fa-users">Recipes</Link></li>
 
-					 		<li><Link to="/recipies/add" className="fa fa-users">Add Recipie</Link></li>
+					 		<li><Link to="/recipes/add" className="fa fa-users">Add Recipe</Link></li>
+
+							<li><Link to="/about" className="fa fa-question-circle">About</Link></li>
+
            </ul>
          </div>
         </nav>
