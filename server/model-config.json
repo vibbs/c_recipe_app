@@ -44,5 +44,11 @@
   "ingredient_entry": {
     "dataSource": "db",
     "public": false
+  },
+  "category": {
+    "dataSource": "db",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }

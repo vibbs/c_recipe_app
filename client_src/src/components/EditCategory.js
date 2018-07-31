@@ -11,7 +11,6 @@ class EditRecipe extends Component {
     this.state = {
       id : '',
       name : '',
-      desc : '',
       ingredient_list : []
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,8 +23,7 @@ class EditRecipe extends Component {
 		.then(response => {
 			this.setState({
         id : response.data.id,
-        name : response.data.name,
-        desc : response.data.desc
+        name : response.data.name
       },() => {
 				//console.log("---"+this.state);
 			})
@@ -43,18 +41,17 @@ class EditRecipe extends Component {
     console.log(newRecipe);
     axios.request({
       method:'PUT',
-      url:`http://localhost:3000/api/recipes/${this.props.match.params.id}`,
+      url:`http://localhost:3000/api/categories/${this.props.match.params.id}`,
       data : newRecipe
     }).then(response =>{
       console.log(response);
-      this.props.history.push(`/recipes/${this.props.match.params.id}`);
+      this.props.history.push(`/categories/${this.props.match.params.id}`);
     }).catch(err => console.log(err))
   }
 
   onSubmit(e){
     const newRecipe = {
-      name : this.refs.name.value,
-      desc : this.refs.desc.value
+      name : this.refs.name.value
     }
     this.editRecipe(newRecipe);
     e.preventDefault();
@@ -79,12 +76,6 @@ class EditRecipe extends Component {
           <input type="text" name="name"  ref="name" value={this.state.name}
           onChange={this.handleInputChange}/>
           <label htmlFor="name"> Name</label>
-        </div>
-
-        <div className="input-field">
-          <input type="text" name="desc"  ref="desc" value={this.state.desc}
-          onChange={this.handleInputChange}/>
-          <label htmlFor="desc">Description</label>
         </div>
 
         <input type="submit" className="btn" value="Save"></input>

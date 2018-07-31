@@ -1,10 +1,15 @@
 import React, {Component}  from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-
+import CategoryItem from './CategoryItem';
 
 class AddRecipe extends Component {
-
+  constructor(){
+		super();
+		this.state = {
+			categories : []
+		}
+	}
   addRecipe(newRecipe){
     console.log(newRecipe);
     axios.request({
@@ -16,6 +21,17 @@ class AddRecipe extends Component {
       this.props.history.push('/');
     }).catch(err => console.log(err))
   }
+  componentWillMount(){
+		this.getCategories();
+	}
+	getCategories(){
+		axios.get('http://localhost:3000/api/categories')
+		.then(response => {
+			this.setState({categories : response.data},() => {
+				//console.log(this.state);
+			})
+		}).catch(err => console.log(err))
+	}
 
   onSubmit(e){
     const newRecipe = {
@@ -28,6 +44,11 @@ class AddRecipe extends Component {
 
 
   render() {
+    const categoryItems = this.state.categories.map((category, i) => {
+			return (
+				<CategoryItem item={category} key= {category.id}/>
+			)
+		})
     return (
     <div>
     <br/>
@@ -43,7 +64,12 @@ class AddRecipe extends Component {
           <input type="text" name="desc"  ref="desc"/>
           <label htmlFor="desc">Description</label>
         </div>
-
+        <div>
+				    <h1> Categories </h1>
+						<ul className="collection">
+							{categoryItems}
+						</ul>
+						</div>
         <input type="submit" className="btn" value="Save"></input>
       </form>
     </div>

@@ -6,3 +6,14 @@ module.exports = function(server) {
   router.get('/', server.loopback.status());
   server.use(router);
 };
+
+
+/**
+ in middle ware.json add this property::
+
+   "files": {
+    "loopback#static": {
+      "params": "$!../client"
+    }
+  },
+ */

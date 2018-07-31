@@ -65,7 +65,7 @@ class RecipeDetails extends Component {
     <Link className="btn" to={`/recipes/edit/${this.state.details.id}`}>
     Edit</Link>
 
-    <button onClick={this.onDelete.bind(this)} className="btn red right">Delete</button>
+    {/* <button onClick={this.onDelete.bind(this)} className="btn red right">Delete</button> */}
     </div>
     )
 

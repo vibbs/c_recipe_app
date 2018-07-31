@@ -6,23 +6,11 @@
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
     "desc": {
       "type": "string",
       "required": true
     },
-    "flavour_tags": {
-      "type": [
-        "string"
-      ]
-    },
     "public_view": {
-      "type": "boolean"
-    },
-    "generic_creation": {
       "type": "boolean"
     },
     "ingredient_list": {
@@ -30,6 +18,17 @@
         "ingredient_entry"
       ],
       "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "categories": {
+      "type": [
+        "category"
+      ],
+      "index": true
     }
   },
   "validations": [],
@@ -39,7 +38,14 @@
       "model": "ingredient_entry",
       "foreignKey": "",
       "through": "ingredient_entry"
+    },
+    "category": {
+      "type": "hasMany",
+      "model": "category",
+      "foreignKey": "id",
+      "through": "category"
     }
+
   },
   "acls": [],
   "methods": {}
