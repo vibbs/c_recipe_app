@@ -13,39 +13,26 @@
     "public_view": {
       "type": "boolean"
     },
-    "ingredient_list": {
-      "type": [
-        "ingredient_entry"
-      ],
-      "required": true
-    },
     "name": {
       "type": "string",
       "required": true,
       "index": true
     },
-    "categories": {
+    "categories_list": {
       "type": [
-        "category"
+        "string"
       ],
       "index": true
+    },
+    "ingredient_list": {
+      "type": [
+        "object"
+      ],
+      "required": false
     }
   },
   "validations": [],
   "relations": {
-    "ingredient_list": {
-      "type": "hasMany",
-      "model": "ingredient_entry",
-      "foreignKey": "",
-      "through": "ingredient_entry"
-    },
-    "category": {
-      "type": "hasMany",
-      "model": "category",
-      "foreignKey": "id",
-      "through": "category"
-    }
-
   },
   "acls": [],
   "methods": {}

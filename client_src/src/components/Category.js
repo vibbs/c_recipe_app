@@ -23,7 +23,7 @@ class Category extends Component{
 	render(){
 		const categoryItems = this.state.categories.map((category, i) => {
 			return (
-				<CategoryItem item={category} key= {category.id}/>
+				<CategoryItem item={category} key= {category.name}/>
 			)
 		})
 		return (

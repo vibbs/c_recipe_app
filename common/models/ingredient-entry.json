@@ -6,8 +6,9 @@
     "validateUpsert": true
   },
   "properties": {
-    "ingredient": {
+    "name": {
       "type": "string",
+      "id": true,
       "required": true
     },
     "qty": {

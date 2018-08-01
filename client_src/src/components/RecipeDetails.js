@@ -40,12 +40,12 @@ class RecipeDetails extends Component {
   render() {
       const ingredient_list = this.state.ingredient_list.map((item, i) => {
   			return (
-          <ul className="collection" key= {item.ingredient}>
-            <li className="collection-item" >
-              {item.ingredient} :
-              {item.qty}
-            </li>
-          </ul>
+          <tr >
+              <td className="col s10">{item.name}</td>
+              <td className="right col s2">{item.qty}</td>
+          </tr>
+
+          
   			)
   		})
 
@@ -56,16 +56,24 @@ class RecipeDetails extends Component {
     <Link className="btn grey" to="/">Back</Link>
     <h1>{this.state.details.name}</h1>
     <h1>{this.state.details.desc}</h1>
-        <ul className="collection">
-          <li className="collection-item" >  {ingredient_list}  </li>
-        </ul>
+
+    <table className="bordered">
+      <thead >
+        <tr>
+            <th className="col s10">Step</th>
+            <th className="right col s2">Qty</th>
+        </tr>
+      </thead>
+      <tbody>
+        {ingredient_list}
+      </tbody>  
+    </table>
 
 
-
-    <Link className="btn" to={`/recipes/edit/${this.state.details.id}`}>
+    <Link className="btn pad-mar" to={`/recipes/edit/${this.state.details.id}`}>
     Edit</Link>
 
-    {/* <button onClick={this.onDelete.bind(this)} className="btn red right">Delete</button> */}
+    <button onClick={this.onDelete.bind(this)} className="btn red right pad-mar">Delete</button>
     </div>
     )
 

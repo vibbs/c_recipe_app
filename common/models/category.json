@@ -9,6 +9,7 @@
   "properties": {
     "name": {
       "type": "string",
+      "id": true,
       "required": true
     }
   },

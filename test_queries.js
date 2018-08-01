@@ -18,3 +18,10 @@ var query = {
     }
   
  */
+
+
+ var TODO = [
+   "add validation to all th possible attr in forms",
+   "user authentication"
+ ]
+

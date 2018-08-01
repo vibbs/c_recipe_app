@@ -13,17 +13,17 @@ class Navbar extends Component{
 					 <i className="fa fa-bars"></i></a>
            <ul id="nav-mobile" className="right hide-on-small-only">
 
-             <li><Link to="/" className="fa fa-users">Recipies</Link></li>
+             <li><Link to="/" className="fa ">Recipies</Link></li>
 
 
            </ul>
            <ul className="side-nav" id="main-menu">
 
-              <li><Link to="/about" className="fa fa-question-circle">About</Link></li>
-					 		<li><Link to="/" className="fa fa-users">Recipes</Link></li>
-					 		<li><Link to="/recipes/add" className="fa fa-users">Add Recipe</Link></li>
-              <li><Link to="/category" className="fa fa-question-circle">Category</Link></li>
-              <li><Link to="/category/add" className="fa fa-question-circle">Add Category</Link></li>
+              <li><Link to="/about" className="fa ">About</Link></li>
+					 		<li><Link to="/" className="fa ">Recipes</Link></li>
+					 		<li><Link to="/recipes/add" className="fa ">Add Recipe</Link></li>
+              <li><Link to="/category" className="fa ">Category</Link></li>
+              <li><Link to="/category/add" className="fa ">Add Category</Link></li>
 
            </ul>
          </div>
