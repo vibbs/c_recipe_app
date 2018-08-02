@@ -18,10 +18,14 @@ var query = {
     }
   
  */
-
-
  var TODO = [
    "add validation to all th possible attr in forms",
-   "user authentication"
+   "user authentication",
+   {"add more attributes based on" : {
+    1: "baseAlcohol",//? should be one value or many ?
+    2: "flavours",
+    3: "see if the qty can be made more dynamic or not",
+    4: ""
+   }}
  ]
 
