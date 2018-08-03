@@ -13,6 +13,15 @@ class CategoryDetails extends Component {
   componentWillMount(){
     console.log("test");
 		this.getCategory();
+  }
+  
+  getRecipes(){
+		axios.get('http://localhost:3000/api/recipes')
+		.then(response => {
+			this.setState({recipes : response.data},() => {
+				//console.log(this.state);
+			})
+		}).catch(err => console.log(err))
 	}
 
 	getCategory(){
@@ -41,11 +50,11 @@ class CategoryDetails extends Component {
     return (
     <div>
     <br/>
-    <Link className="btn grey" to="/">Back</Link>
+    <Link className="btn grey" to="/categories">Back</Link>
     <h1>{this.state.details.name}</h1>
 
-    <Link className="btn" to={`/categories/edit/${this.state.details.id}`}>
-    Edit</Link>
+    {/* <Link className="btn" to={`/categories/edit/${this.state.details.name}`}>
+    Edit</Link> */}
 
     {/* <button onClick={this.onDelete.bind(this)} className="btn red right">Delete</button> */}
     </div>
@@ -56,3 +65,12 @@ class CategoryDetails extends Component {
 }
 
 export default CategoryDetails;
+
+
+/*
+
+{ fields: {id: true, make: true, model: true} }
+{"where":{"categories_list":{"like":"Refresh.*","options":"i"}}}
+
+
+*/

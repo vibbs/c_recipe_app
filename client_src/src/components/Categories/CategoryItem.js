@@ -12,7 +12,7 @@ class CategoryItem extends Component {
   render() {
     return (
       <li className="collection-item" >
-      <Link to={`/categories/${this.state.item.id}`}>
+      <Link to={`/categories/${this.state.item.name}`}>
       {this.state.item.name}
       </Link>
       </li>

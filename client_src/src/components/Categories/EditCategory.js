@@ -19,7 +19,7 @@ class EditRecipe extends Component {
     this.getRecipe();
   }
   getRecipe(){
-		axios.get(`http://localhost:3000/api/recipes/${this.props.match.params.id}`)
+		axios.get(`http://localhost:3000/api/categories/${this.props.match.params.id}`)
 		.then(response => {
 			this.setState({
         id : response.data.id,

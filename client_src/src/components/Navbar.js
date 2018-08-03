@@ -15,6 +15,8 @@ class Navbar extends Component{
 
              <li><Link to="/" className="fa ">Recipies</Link></li>
 
+       
+
 
            </ul>
            <ul className="side-nav" id="main-menu">
@@ -22,8 +24,10 @@ class Navbar extends Component{
               <li><Link to="/about" className="fa ">About</Link></li>
 					 		<li><Link to="/" className="fa ">Recipes</Link></li>
 					 		<li><Link to="/recipes/add" className="fa ">Add Recipe</Link></li>
-              <li><Link to="/category" className="fa ">Category</Link></li>
-              <li><Link to="/category/add" className="fa ">Add Category</Link></li>
+              <li><Link to="/categories" className="fa ">Categories</Link></li>
+              <li><Link to="/categories/add" className="fa ">Add Category</Link></li>
+              <li><Link to="/labels" className="fa ">Labels</Link></li>
+              <li><Link to="/labels/add" className="fa ">Add Label</Link></li>
 
            </ul>
          </div>

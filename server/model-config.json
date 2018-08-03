@@ -50,5 +50,9 @@
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "label": {
+    "dataSource": "db",
+    "public": true
   }
 }

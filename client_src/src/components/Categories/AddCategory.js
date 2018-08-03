@@ -13,7 +13,7 @@ class AddCategory extends Component {
       data : newCategory
     }).then(response =>{
       //console.log(response);
-      this.props.history.push('/category');
+      this.props.history.push('/categories');
     }).catch(err => console.log(err))
   }
 

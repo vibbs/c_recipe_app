@@ -1,4 +1,4 @@
-import React, {Component}  from 'react';
+  import React, {Component}  from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
@@ -55,7 +55,7 @@ class RecipeDetails extends Component {
     <br/>
     <Link className="btn grey" to="/">Back</Link>
     <h1>{this.state.details.name}</h1>
-    <h1>{this.state.details.desc}</h1>
+  
 
     <table className="bordered">
       <thead >
@@ -70,6 +70,10 @@ class RecipeDetails extends Component {
     </table>
 
 
+        <h5>Description</h5>
+        <text className="right col s2">{this.state.details.desc}</text>
+
+        
     <Link className="btn pad-mar" to={`/recipes/edit/${this.state.details.id}`}>
     Edit</Link>
 
