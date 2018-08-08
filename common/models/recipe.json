@@ -24,6 +24,12 @@
       ],
       "index": true
     },
+    "labels_list": {
+      "type": [
+        "string"
+      ],
+      "index": true
+    },
     "ingredient_list": {
       "type": [
         "object"

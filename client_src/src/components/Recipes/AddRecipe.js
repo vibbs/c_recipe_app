@@ -8,8 +8,11 @@ class AddRecipe extends Component {
 		super();
 		this.state = {
       categories : [],
-      selectedOption: [],
+      selectedCatOption: [],
       categories_list : [],
+      labels : [],
+      selectedLabelOption: [],
+      labels_list : [],
       ingredient_list: [{ name: '' , qty : ''}]
 		}
 	}
@@ -26,6 +29,7 @@ class AddRecipe extends Component {
   }
   componentWillMount(){
     this.getCategories();
+    this.getLabels();
 	}
 	getCategories(){
 		axios.get('http://localhost:3000/api/categories')
@@ -35,21 +39,37 @@ class AddRecipe extends Component {
 			})
 		}).catch(err => console.log(err))
   }
-  
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption :selectedOption});
+  getLabels(){
+		axios.get('http://localhost:3000/api/labels')
+		.then(response => {
+			this.setState({labels : response.data},() => {
+				//console.log(response.data);
+			})
+		}).catch(err => console.log(err))
+  }
+  handleCatChange = (selectedCatOption) => {
+    this.setState({ selectedCatOption :selectedCatOption});
     let newCatList = [];
-    for(let i = 0 ; i < selectedOption.length ;  i++){
-      newCatList.push(selectedOption[i].value);
+    for(let i = 0 ; i < selectedCatOption.length ;  i++){
+      newCatList.push(selectedCatOption[i].value);
     }
     this.setState({ categories_list :newCatList});
   }
 
+  handleLabelChange = (selectedLabelOption) => {
+    this.setState({ selectedLabelOption :selectedLabelOption});
+    let newLabelList = [];
+    for(let i = 0 ; i < selectedLabelOption.length ;  i++){
+      newLabelList.push(selectedLabelOption[i].value);
+    }
+    this.setState({ labels_list :newLabelList});
+  }
   onSubmit(e){
     const newRecipe = {
       name : this.refs.name.value,
       desc : this.refs.desc.value,
       categories_list : this.state.categories_list,
+      labels_list : this.state.labels_list,
       ingredient_list : this.state.ingredient_list,
     }
     this.addRecipe(newRecipe);
@@ -61,7 +81,6 @@ class AddRecipe extends Component {
 
   // THis is ingredient_list code 
 
-  
   handleIngredientNameChange = (idx) => (evt) => {
     const newIngredients = this.state.ingredient_list.map((ingredient, sidx) => {
       console.log(ingredient)
@@ -122,12 +141,22 @@ class AddRecipe extends Component {
   // end of ingredient_list code
 
   render() {
-    const selectedOption  = this.state.selectedOption;
+    const selectedCatOption  = this.state.selectedCatOption;
+    
     const categoryItems = this.state.categories.map((category, i) => {
 			return (
         {
           label : category.name,
           value : category.name
+        }
+			)
+    })
+    const selectedLabelOption  = this.state.selectedLabelOption;
+    const labelItems = this.state.labels.map((label, i) => {
+			return (
+        {
+          label : label.name,
+          value : label.name
         }
 			)
     })
@@ -189,15 +218,26 @@ class AddRecipe extends Component {
  <Select
 name="categories"
 placeholder="Catergories"
-        value={selectedOption}
+        value={selectedCatOption}
         isSearchable
-        onChange={this.handleChange}
+        onChange={this.handleCatChange}
         options={categoryItems}
         isMulti
         className="input-field basic-multi-select"
         classNamePrefix="select"
       />
 
+      <Select
+name="labels"
+placeholder="Labels"
+        value={selectedLabelOption}
+        isSearchable
+        onChange={this.handleLabelChange}
+        options={labelItems}
+        isMulti
+        className="input-field basic-multi-select"
+        classNamePrefix="select"
+      />
 
 
         <input type="submit" className="btn pad-mar" value="Save"></input>

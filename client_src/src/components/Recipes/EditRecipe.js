@@ -14,7 +14,10 @@ class EditRecipe extends Component {
       desc : '',
       categories: [],
       categories_list : [],
-      selectedOption: [],
+      selectedCatOption: [],
+      labels : [],
+      selectedLabelOption: [],
+      labels_list : [],
       ingredient_list : []
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -22,12 +25,22 @@ class EditRecipe extends Component {
   componentWillMount(){
     this.getRecipe();
     this.getCategories();
+    this.getLabels();
   }
 
   getCategories(){
 		axios.get('http://localhost:3000/api/categories')
 		.then(response => {
 			this.setState({categories : response.data},() => {
+				//console.log(response.data);
+			})
+		}).catch(err => console.log(err))
+  }
+
+  getLabels(){
+		axios.get('http://localhost:3000/api/labels')
+		.then(response => {
+			this.setState({labels : response.data},() => {
 				//console.log(response.data);
 			})
 		}).catch(err => console.log(err))
@@ -41,7 +54,16 @@ class EditRecipe extends Component {
         desc : response.data.desc,
         ingredient_list : response.data.ingredient_list || [],
         categories_list : response.data.categories_list || [],
-        selectedOption : response.data.categories_list.map((name, i) => {
+        selectedCatOption : response.data.categories_list.map((name, i) => {
+          return (
+            {
+              label : name,
+              value : name
+            }
+          )
+        }),
+        labels_list : response.data.labels_list || [],
+        selectedLabelOption : response.data.labels_list.map((name, i) => {
           return (
             {
               label : name,
@@ -141,19 +163,30 @@ class EditRecipe extends Component {
     });
   }
 
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption :selectedOption});
+  
+
+  // end of ingredient_list code
+
+  handleCatChange = (selectedCatOption) => {
+    this.setState({ selectedCatOption :selectedCatOption});
     let newCatList = [];
-    for(let i = 0 ; i < selectedOption.length ;  i++){
-      newCatList.push(selectedOption[i].value);
+    for(let i = 0 ; i < selectedCatOption.length ;  i++){
+      newCatList.push(selectedCatOption[i].value);
     }
     this.setState({ categories_list :newCatList});
   }
 
-  // end of ingredient_list code
+  handleLabelChange = (selectedLabelOption) => {
+    this.setState({ selectedLabelOption :selectedLabelOption});
+    let newLabelList = [];
+    for(let i = 0 ; i < selectedLabelOption.length ;  i++){
+      newLabelList.push(selectedLabelOption[i].value);
+    }
+    this.setState({ labels_list :newLabelList});
+  }
 
   render() {
-    const selectedOption  = this.state.selectedOption;
+    const selectedCatOption  = this.state.selectedCatOption;
     const categoryItems = this.state.categories.map((category, i) => {
 			return (
         {
@@ -161,7 +194,17 @@ class EditRecipe extends Component {
           value : category.name
         }
 			)
-		})
+    })
+    
+    const selectedLabelOption  = this.state.selectedLabelOption;
+    const labelItems = this.state.labels.map((label, i) => {
+			return (
+        {
+          label : label.name,
+          value : label.name
+        }
+			)
+    })
     return (
     <div>
     <br/>
@@ -210,15 +253,26 @@ class EditRecipe extends Component {
  <Select
 name="categories"
 placeholder="Catergories"
-        value={selectedOption}
+        value={selectedCatOption}
         isSearchable
-        onChange={this.handleChange}
+        onChange={this.handleCatChange}
         options={categoryItems}
         isMulti
         className="input-field basic-multi-select"
         classNamePrefix="select"
       />
 
+            <Select
+name="labels"
+placeholder="Labels"
+        value={selectedLabelOption}
+        isSearchable
+        onChange={this.handleLabelChange}
+        options={labelItems}
+        isMulti
+        className="input-field basic-multi-select"
+        classNamePrefix="select"
+      />
 
         <input type="submit" className="btn" value="Save"></input>
       </form>
