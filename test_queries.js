@@ -1,6 +1,12 @@
+/*
+To run on the same server:
+
+Edit ./server/boot/root.js and ./server/middleware.json
+
+*/
+
 
 /*
-
     {
       "accessType": "WRITE",
       "principalType": "ROLE",

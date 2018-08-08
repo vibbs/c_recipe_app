@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,SACE,eAAgB,CAGlB,UACE,gBAAiB","file":"static/css/main.945f46dc.css","sourcesContent":[".pad-mar {\n  margin-top: 20px\n}\n\n.line-del {\n  margin-right: 5px\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/App.css"],"sourceRoot":""}
