@@ -1,18 +1,21 @@
 import React, {Component}  from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-
+import RecipeItem from '../Recipes/RecipeItem';
 
 class LabelDetails extends Component {
   constructor(props){
 		super(props);
 		this.state = {
-			details : '',
-		}
+      details : '',
+      recipes : []
+    };
+    
 	}
   componentWillMount(){
     console.log("test");
-		this.getLabel();
+    this.getLabel();
+    this.getRecipes();
 	}
 
 	getLabel(){
@@ -29,6 +32,14 @@ class LabelDetails extends Component {
 		}).catch(err => console.log(err))
 	}
 
+  getRecipes(){
+		axios.get(`http://localhost:3000/api/recipes?filter={"where":{"labels_list":{"like":"${this.props.match.params.id}.*","options":"i"}}}`)
+		.then(response => {
+			this.setState({recipes : response.data},() => {
+				//console.log(this.state);
+			})
+		}).catch(err => console.log(err))
+	}
 
   onDelete(){
     axios.delete(`http://localhost:3000/api/labels/${this.props.match.params.name}`)
@@ -37,12 +48,23 @@ class LabelDetails extends Component {
     }).catch(err => console.log(err))
   }
   render() {
-
+    const recipeItems = this.state.recipes.map((recipe, i) => {
+			return (
+				<RecipeItem item={recipe} key= {recipe.id}/>
+			)
+		})
     return (
     <div>
     <br/>
     <Link className="btn grey" to="/labels">Back</Link>
     <h1>{this.state.details.name}</h1>
+
+    <div>
+      <ul className="collection">
+        {recipeItems}
+      </ul>
+		</div>
+
 
     {/* <Link className="btn" to={`/labels/edit/${this.state.details.name}`}>
     Edit</Link> */}
