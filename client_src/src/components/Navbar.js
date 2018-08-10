@@ -28,6 +28,8 @@ class Navbar extends Component{
               <li><Link to="/categories/add" className="fa ">Add Category</Link></li>
               <li><Link to="/labels" className="fa ">Labels</Link></li>
               <li><Link to="/labels/add" className="fa ">Add Label</Link></li>
+              <li><Link to="/glasses" className="fa ">Glasses</Link></li>
+              <li><Link to="/glasses/add" className="fa ">Add Glass</Link></li>
 
            </ul>
          </div>

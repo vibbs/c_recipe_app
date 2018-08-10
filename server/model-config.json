@@ -54,5 +54,11 @@
   "label": {
     "dataSource": "db",
     "public": true
+  },
+  "glass": {
+    "dataSource": "db",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }
