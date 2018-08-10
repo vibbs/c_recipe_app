@@ -49,28 +49,31 @@ class EditRecipe extends Component {
   getRecipe(){
 		axios.get(`http://localhost:3000/api/recipes/${this.props.match.params.id}`)
 		.then(response => {
+      console.log(response);
 			this.setState({
         name : response.data.name,
         desc : response.data.desc,
         ingredient_list : response.data.ingredient_list || [],
         categories_list : response.data.categories_list || [],
-        selectedCatOption : response.data.categories_list.map((name, i) => {
+        selectedCatOption : response.data.hasOwnProperty('categories_list') ?
+        response.data.categories_list.map((name, i) => {
           return (
             {
               label : name,
               value : name
             }
           )
-        }),
+        }) : [],
         labels_list : response.data.labels_list || [],
-        selectedLabelOption : response.data.labels_list.map((name, i) => {
+        selectedLabelOption : response.data.hasOwnProperty('labels_list') ?
+        response.data.labels_list.map((name, i) => {
           return (
             {
               label : name,
               value : name
             }
           )
-        })
+        }) : []
       },() => {
 				//console.log("---"+this.state);
 			})
@@ -209,18 +212,21 @@ class EditRecipe extends Component {
     <div>
     <br/>
       <Link className="btn grey" to="/">Back</Link>
-      <h1>AddRecipe</h1>
+      <h1>EditRecipe</h1>
       <form onSubmit={this.onSubmit.bind(this)}>
+
+       <label htmlFor="name"> Name</label>
         <div className="input-field">
           <input type="text" name="name"  ref="name" value={this.state.name}
           onChange={this.handleInputChange}/>
-          <label htmlFor="name"> Name</label>
+         
         </div>
 
+<label htmlFor="desc">Description</label>
         <div className="input-field">
           <input type="text" name="desc"  ref="desc" value={this.state.desc}
           onChange={this.handleInputChange}/>
-          <label htmlFor="desc">Description</label>
+          
         </div>
 
         <label htmlFor="ingredient_list">Ingredients</label>

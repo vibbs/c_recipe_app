@@ -8,13 +8,15 @@ class CategoryDetails extends Component {
 		super(props);
 		this.state = {
 			details : '',
-      recipes : []
+      recipes : [],
+      random_recipe : {}
 		}
 	}
   componentWillMount(){
     console.log("test");
     this.getCategory();
     this.getRecipes();
+    this.getRandom();
   }
   
   getRecipes(){
@@ -25,6 +27,19 @@ class CategoryDetails extends Component {
 			})
 		}).catch(err => console.log(err))
   }
+
+  getRandom(){
+		axios.get(`http://localhost:3000/api/recipes/random?filter={"categories_list":"${this.props.match.params.id}"}`)
+		.then(response => {
+      console.log(response);
+      if(response.data.data.length >0){
+        this.setState({random_recipe : response.data.data[0]},() => {
+          //console.log(this.state);
+        })
+      }
+			
+		}).catch(err => console.log(err))
+	}
   
 	getCategory(){
     console.log("test");
@@ -57,10 +72,17 @@ class CategoryDetails extends Component {
 			)
 		})
     return (
-    <div>
+      <div>
+    <div  className="row" >
     <br/>
-    <Link className="btn grey" to="/categories">Back</Link>
-    <h1>{this.state.details.name}</h1>
+    <Link className="btn grey col s2" to="/categories">Back</Link>
+
+    
+    <h3 className="col s8">{this.state.details.name}</h3>
+    <Link   className="btn blue col s2" to={`/recipes/${this.state.random_recipe._id}`}>
+			Get Random	
+				</Link>
+        </div>
 
     <div>
       <ul className="collection">

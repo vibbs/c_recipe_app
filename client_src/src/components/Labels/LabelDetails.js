@@ -8,7 +8,8 @@ class LabelDetails extends Component {
 		super(props);
 		this.state = {
       details : '',
-      recipes : []
+      recipes : [],
+      random_recipe : {}
     };
     
 	}
@@ -16,6 +17,7 @@ class LabelDetails extends Component {
     console.log("test");
     this.getLabel();
     this.getRecipes();
+    this.getRandom();
 	}
 
 	getLabel(){
@@ -41,6 +43,19 @@ class LabelDetails extends Component {
 		}).catch(err => console.log(err))
 	}
 
+  getRandom(){
+		axios.get(`http://localhost:3000/api/recipes/random?filter={"labels_list":"${this.props.match.params.id}"}`)
+		.then(response => {
+      console.log(response);
+      if(response.data.data.length >0){
+        this.setState({random_recipe : response.data.data[0]},() => {
+          //console.log(this.state);
+        })
+      }
+			
+		}).catch(err => console.log(err))
+  }
+  
   onDelete(){
     axios.delete(`http://localhost:3000/api/labels/${this.props.match.params.name}`)
     .then(response => {
@@ -54,10 +69,16 @@ class LabelDetails extends Component {
 			)
 		})
     return (
-    <div>
-    <br/>
-    <Link className="btn grey" to="/labels">Back</Link>
-    <h1>{this.state.details.name}</h1>
+      <div>
+      <div  className="row" >
+      <br/>
+    <Link className="btn grey col s2" to="/labels">Back</Link>
+ 
+    <h1 className="col s8">{this.state.details.name}</h1>
+    <Link   className="btn blue col s2" to={`/recipes/${this.state.random_recipe._id}`}>
+			Get Random	
+				</Link>
+        </div>
 
     <div>
       <ul className="collection">
