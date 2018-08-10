@@ -95,7 +95,6 @@ class EditRecipe extends Component {
       url:`http://localhost:3000/api/recipes/${this.props.match.params.id}`,
       data : newRecipe
     }).then(response =>{
-      console.log(response);
       this.props.history.push(`/recipes/${this.props.match.params.id}`);
     }).catch(err => console.log(err))
   }
@@ -105,6 +104,7 @@ class EditRecipe extends Component {
       name : this.refs.name.value,
       desc : this.refs.desc.value,
       categories_list : this.state.categories_list,
+      labels_list : this.state.labels_list,
       ingredient_list : this.state.ingredient_list,
     }
     this.editRecipe(newRecipe);
@@ -185,7 +185,7 @@ class EditRecipe extends Component {
     for(let i = 0 ; i < selectedLabelOption.length ;  i++){
       newLabelList.push(selectedLabelOption[i].value);
     }
-    this.setState({ labels_list :newLabelList});
+    this.setState({ labels_list : newLabelList});
   }
 
   render() {
