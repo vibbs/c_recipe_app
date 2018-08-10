@@ -10,6 +10,8 @@ class AddRecipe extends Component {
       categories : [],
       selectedCatOption: [],
       categories_list : [],
+      glasses : [],
+      selectedGlass : '',
       labels : [],
       selectedLabelOption: [],
       labels_list : [],
@@ -47,6 +49,15 @@ class AddRecipe extends Component {
 			})
 		}).catch(err => console.log(err))
   }
+  getGlasses(){
+		axios.get('http://localhost:3000/api/glasses')
+		.then(response => {
+      console.log(response.data);
+			this.setState({glasses : response.data},() => {
+				
+			})
+		}).catch(err => console.log(err))
+  }
   handleCatChange = (selectedCatOption) => {
     this.setState({ selectedCatOption :selectedCatOption});
     let newCatList = [];
@@ -63,6 +74,11 @@ class AddRecipe extends Component {
       newLabelList.push(selectedLabelOption[i].value);
     }
     this.setState({ labels_list :newLabelList});
+  }
+
+  handleGlassChange = (selectedGlass) => {
+    this.setState({ selectedGlass :selectedGlass.value});
+    console.log(this.state.selectedGlass);
   }
   onSubmit(e){
     const newRecipe = {
@@ -141,6 +157,7 @@ class AddRecipe extends Component {
   // end of ingredient_list code
 
   render() {
+    const selectedGlass = this.state.selectedGlass;
     const selectedCatOption  = this.state.selectedCatOption;
     
     const categoryItems = this.state.categories.map((category, i) => {
@@ -210,6 +227,17 @@ class AddRecipe extends Component {
 ))}
 <button type="button" onClick={this.handleAddIngredient} className="btn blue">Add Ingredient</button>
 
+
+<Select
+name="glass"
+placeholder="GlassType"
+        value={selectedGlass}
+        onChange={this.handleGlassChange}
+        isSearchable
+        options={labelItems}
+        className="input-field"
+        classNamePrefix="select"
+      />
 
 
 

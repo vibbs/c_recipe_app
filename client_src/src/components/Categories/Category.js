@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios';
 import CategoryItem from './CategoryItem';
+import {Link} from 'react-router-dom';
 
 class Category extends Component{ 
   constructor(){
@@ -29,6 +30,7 @@ class Category extends Component{
 		return (
 				<div>
 				    <h1> Categories </h1>
+					<Link className="btn green col s2" to="/categories/add">Add</Link>
 						<ul className="collection">
 							{categoryItems}
 						</ul>

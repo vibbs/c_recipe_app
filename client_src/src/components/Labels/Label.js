@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios';
 import LabelItem from './LabelItem';
+import {Link} from 'react-router-dom';
 
 class Label extends Component{ 
   constructor(){
@@ -29,6 +30,7 @@ class Label extends Component{
 		return (
 				<div>
 				    <h1> Labels </h1>
+					<Link className="btn green col s2" to="/labels/add">Add</Link>
 						<ul className="collection">
 							{labelItems}
 						</ul>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios';
 import GlassItem from './GlassItem';
+import {Link} from 'react-router-dom';
 
 class Glass extends Component{ 
   constructor(){
@@ -29,6 +30,7 @@ class Glass extends Component{
 		return (
 				<div>
 				    <h1> Glasses </h1>
+					<Link className="btn green col s2" to="/glasses/add">Add</Link>
 						<ul className="collection">
 							{labelItems}
 						</ul>
