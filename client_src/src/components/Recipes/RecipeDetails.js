@@ -71,7 +71,8 @@ class RecipeDetails extends Component {
 
 
         <h5>Description</h5>
-        <text className="right col s2">{this.state.details.desc}</text>
+        <text className=" col s2">{this.state.details.desc}</text>
+        <br/>
 
         
     <Link className="btn pad-mar" to={`/recipes/edit/${this.state.details.id}`}>
