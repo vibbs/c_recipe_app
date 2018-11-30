@@ -14,7 +14,8 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -60,5 +61,13 @@
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "account": {
+    "dataSource": "db",
+    "public": true
+  },
+  "travern": {
+    "dataSource": "db",
+    "public": true
   }
 }
