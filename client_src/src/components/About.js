@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const About = () => (
-    <div>
-    <h1> My about </h1>
-  </div>
-)
+
+
+class About extends Component {
+  componentDidMount = () => {
+    
+  }
+  render() {
+    return (
+      <div>
+        <h1> My about </h1>
+      </div>
+    )
+  }
+} 
 
 export default About;

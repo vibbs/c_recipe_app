@@ -42,4 +42,9 @@ categories are: refreshing, spirit forward, texture and like that..ETC
 2. 
 
 
+
+TODO: Technical implementation
+1. Actual integration with the User authentication
+2. registration  and User verification
+3. Attach the recipies with the cocktail
  */
