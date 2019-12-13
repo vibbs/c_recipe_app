@@ -12,7 +12,25 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "travern": {
+      "type": "belongsTo",
+      "model": "travern",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true,
+        "disableInclude": true
+      }
+    },
+    "recipes": {
+      "type": "hasMany",
+      "model": "recipe",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+  },
   "acls": [],
   "methods": {}
 }

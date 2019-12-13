@@ -38,7 +38,24 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "accounts": {
+      "type": "belongsTo",
+      "model": "account",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "travern": {
+      "type": "belongsTo",
+      "model": "travern",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

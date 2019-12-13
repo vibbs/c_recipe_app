@@ -28,57 +28,18 @@ class App extends Component {
     return (
       <AppProvider>
         <div className="App">
-
-        {this.state.isSignedIn ? (
-          <div>
             <Navbar/>
-
             <div className="container">
               <Main/>
             </div>
-
             <div className="fixed-action-btn">
               <Link to="/recipes/add" className="btn-floating btn-large red">
                 <i className="fa fa-plus" > </i>
               </Link>
             </div>
-          </div>
-          
-        ):(
-          
-            <div className="App__Register">
-              <div className="App__Aside">
-                <h2>Travern Manager</h2>
-                <p> This would container some marketing and about details</p>
-              </div>
-              
-              
-              <div className="App__Form">
-                  <div className="PageSwitcher">
-                    <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-                    <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
-                  </div>
-
-                  <div className="FormTitle">
-                      <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/sign-up" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-                  </div>
-
-                  <Route exact path="/" component={SignUpForm}>
-                  </Route>
-                  <Route path="/sign-in" component={SignInForm}>
-                  </Route>
-                  <Route path="/terms" component={Terms}>
-                  </Route>
-              </div>
-            </div>
-         
-        )}
-
-
         </div>
-        
-        
       </AppProvider>
+
     );
   }
 }

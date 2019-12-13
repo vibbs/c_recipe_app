@@ -1,7 +1,6 @@
 {
   "name": "travern",
-  "plural": "travern",
-  "base": "PersistedModel",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -13,7 +12,25 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "accounts": {
+      "type": "hasMany",
+      "model": "account",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "recipes": {
+      "type": "hasMany",
+      "model": "recipe",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true,
+        "disableInclude": false
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }
